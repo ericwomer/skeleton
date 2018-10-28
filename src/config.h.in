@@ -1,0 +1,9 @@
+#if !defined(CONFIG_H)
+#define CONFIG_H
+
+constexpr int Major @major@
+constexpr int Minor @minor@
+constexpr int Patch @patch@
+constexpr int Compile @compile@
+
+#endif // CONFIG_H

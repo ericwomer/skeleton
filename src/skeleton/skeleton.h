@@ -1,20 +1,21 @@
-#ifndef BASE_H
-#define BASE_H
+#if !defined(SKELETON_H)
+#define SKELETON_H
 
 #include <string>
 #include <vector>
 
-class Base {
+class Skeleton {
 public:  // data types
     typedef struct Version_s {
         uint8_t major;
         uint8_t minor;
         uint8_t patch;
+        uint8_t compile;
     } Version_t, *Version_p;
 
     // Public Interface
-    Base();
-    virtual ~Base() = 0;
+    Skeleton();
+    virtual ~Skeleton() = 0;
     virtual int main() = 0;
     virtual int main(int argv, char* argc[]) = 0;
     virtual int main(std::vector<std::string>& params) = 0;
@@ -32,4 +33,4 @@ private:
     Version_t versionNumber;
 };
 
-#endif  // BASE_H
+#endif  // Skeleton_H

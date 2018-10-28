@@ -1,5 +1,5 @@
 project(
-    'template',
+    'skeleton',
     'cpp',
     version : '0.0.0',
     default_options: 
@@ -16,30 +16,40 @@ pkgconfig = import('pkgconfig')
 
 cpp = meson.get_compiler('cpp')
 
-template_src = [
+conf_data = configuration_data()
+conf_data.set('major', '1')
+conf_data.set('minor', '2')
+conf_data.set('patch', '3')
+conf_data.set('compile', '0')
+
+configure_file(input : 'config.h.in',
+               output : 'config.h',
+               configuration : conf_data)
+
+skeleton_src = [
     ]
 
-template_include_directories = [
+skeleton_include_directories = [
     include_directories('src/'),
     include_directories('include/'),
 	include_directories('thirdparty/include/')
     include_directories('/usr/lib/llvm-8/include/c++/v1/')
     ]
 
-template_cflags = ['-stdlib=libc++']
-template_ldflags = [
+skeleton_cflags = ['-stdlib=libc++']
+skeleton_ldflags = [
     '-lm',
     '-lc++',
     '-lc++abi']
 
 
-template_deps = []
+skeleton_deps = []
 
-template = executable(
-    'template', 
-    template_src,
-    dependencies: template_deps,
-    include_directories: template_include_directories,
-    cpp_args: template_cflags,
-    link_args: template_ldflags
+skeleton = executable(
+    'skeleton', 
+    skeleton_src,
+    dependencies: skeleton_deps,
+    include_directories: skeleton_include_directories,
+    cpp_args: skeleton_cflags,
+    link_args: skeleton_ldflags
 )
