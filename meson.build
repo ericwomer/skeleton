@@ -1,3 +1,4 @@
+
 project(
     'Skeletal Application Framework',
     'cpp',
@@ -7,10 +8,12 @@ project(
         'cpp_std=c++14',
         'b_lundef=false',
         'b_sanitize=none',
-        'warning_level=3'
+        'warning_level=3',
     ],
     meson_version: '>=0.48.0'
 )
+
+executable_name = 'skeleton'
 
 pkgconfig = import('pkgconfig')
 
@@ -55,10 +58,13 @@ skeleton_ldflags = [
 skeleton_deps = []
 
 skeleton = executable(
-    'skeleton', 
+    executable_name,
     skeleton_src,
+    install : true, 
     dependencies: skeleton_deps,
     include_directories: skeleton_include_directories,
     cpp_args: skeleton_cflags,
     link_args: skeleton_ldflags
 )
+
+install_data('LICENSE', install_dir: join_paths('share/doc', executable_name))
