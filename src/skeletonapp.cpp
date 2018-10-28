@@ -20,7 +20,7 @@ SkeletonApp::SkeletonApp()
 int SkeletonApp::main()
 {
     // Start Main Application Here.
-    std::cout << project_name << std::endl;
+
     return 0;
 }
 
@@ -54,8 +54,10 @@ int SkeletonApp::main(std::vector<std::string>& params)
             std::cout << std::endl;
             return 0;
         } else if (c == "version") {
-            std::cout << app_name << " " << version() << std::endl;
-            std::cout << "Compiler: " << project_compiler << std::endl;
+            std::cout << app_name << " version " << version() << "\n";
+            std::cout << "Compiler: " << compiler_name << " " << compiler_version << "\n";
+            std::cout << "Operating System: " << operating_system << "\n";
+            std::cout << "Architecture: " << cpu_family << std::endl;
             return 0;
         } else {
             dump.push_back(c);

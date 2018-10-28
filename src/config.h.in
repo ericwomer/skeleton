@@ -9,7 +9,9 @@ constexpr int Patch = @patch@;
 constexpr int Compile = @compile@;
 
 const std::string project_name = "@name@";
-const std::string compiler_name = "@compiler@";
+const std::string compiler_name = "@compiler_name@";
 const std::string compiler_version = "@compiler_version@";
+const std::string operating_system = "@host_machine@";
+const std::string cpu_family = "@cpu_family@";
 
 #endif // CONFIG_H

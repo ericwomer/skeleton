@@ -1,5 +1,5 @@
 project(
-    'Skeleton Application Framework',
+    'Skeletal Application Framework',
     'cpp',
     version : '0.0.0', # This is oveverridden in the conf_data section
     default_options: 
@@ -18,8 +18,12 @@ cpp = meson.get_compiler('cpp')
 
 conf_data = configuration_data()
 conf_data.set('name', meson.project_name())
-conf_data.set('compiler', cpp.get_id())
+
+conf_data.set('compiler_name', cpp.get_id())
 conf_data.set('compiler_version', cpp.version())
+conf_data.set('host_machine', host_machine.system())
+conf_data.set('cpu_family', build_machine.cpu_family())
+
 conf_data.set('major', '0')
 conf_data.set('minor', '0')
 conf_data.set('patch', '1')

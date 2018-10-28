@@ -5,20 +5,19 @@
 #include <vector>
 #include <ostream>
 
-typedef struct Version_s {
-    int major;
-    int minor;
-    int patch;
-    int compile;
-} Version_t, *Version_p;
-
-inline std::ostream& operator<<(std::ostream& out, const Version_t& obj)
-{
-    return out << obj.major << "." << obj.minor << "." << obj.patch << "." << obj.compile;
-}
-
+/**
+ * @brief Skeleton Base class
+ * 
+ */
 class Skeleton {
-public:  // data types
+public:  /// somehing ///
+    typedef struct Version_s {
+        int major;
+        int minor;
+        int patch;
+        int compile;
+    } Version_t, *Version_p;
+
     // Public Interface
     Skeleton(){};
     virtual ~Skeleton(){};
@@ -40,5 +39,17 @@ protected:
 
     Version_t version_number;
 };
+
+/**
+ * @brief Eric: Add brief
+ * 
+ * @param out the output stream 
+ * @param obj the object being written to the output stream
+ * @return std::ostream& 
+ */
+inline std::ostream& operator<<(std::ostream& out, const Skeleton::Version_t& obj)
+{
+    return out << obj.major << "." << obj.minor << "." << obj.patch << "." << obj.compile;
+}
 
 #endif  // Skeleton_H
