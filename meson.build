@@ -1,7 +1,7 @@
 project(
-    'skeleton',
+    'Skeleton Application Framework',
     'cpp',
-    version : '0.0.0',
+    version : '0.0.0', # This is oveverridden in the conf_data section
     default_options: 
     [
         'cpp_std=c++14',
@@ -17,9 +17,12 @@ pkgconfig = import('pkgconfig')
 cpp = meson.get_compiler('cpp')
 
 conf_data = configuration_data()
-conf_data.set('major', '1')
-conf_data.set('minor', '2')
-conf_data.set('patch', '3')
+conf_data.set('name', meson.project_name())
+conf_data.set('compiler', cpp.get_id())
+conf_data.set('compiler_version', cpp.version())
+conf_data.set('major', '0')
+conf_data.set('minor', '0')
+conf_data.set('patch', '1')
 conf_data.set('compile', '0')
 
 configure_file(input : 'src/config.h.in',

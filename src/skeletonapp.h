@@ -23,9 +23,10 @@ public:
     virtual int size() override { return sizeof(this); };
     virtual const std::string name() override { return app_name; };
     virtual void help() override;
-    virtual void name(std::string name) override { app_name = name; };
+    virtual std::string name() const override { return app_name; };
+    virtual void name(const std::string& name) override { app_name = name; };
     virtual Version_t version() const override { return version_number; }
-    virtual void version(const Version_t version) override{};
+    virtual void version(const Version_t& version) override { version_number = version; };
 
 protected:
     std::vector<std::string> actions;

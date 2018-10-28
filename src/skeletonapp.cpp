@@ -8,6 +8,8 @@
 
 SkeletonApp::SkeletonApp()
 {
+    version({Major, Minor, Patch, Compile});
+    name(project_name);
     app_description.push_back(std::string("raytracerapp \n"));
     app_description.push_back(std::string("** nothing else follows ** \n"));
 }
@@ -17,10 +19,8 @@ SkeletonApp::SkeletonApp()
 // with member vars.
 int SkeletonApp::main()
 {
-    version({5, 5, 5, 5});
     // Start Main Application Here.
-    std::cout << version() << std::endl;
-    std::cout << Major << std::endl;
+    std::cout << project_name << std::endl;
     return 0;
 }
 
@@ -54,7 +54,8 @@ int SkeletonApp::main(std::vector<std::string>& params)
             std::cout << std::endl;
             return 0;
         } else if (c == "version") {
-            std::cout << app_name << " " << version() << std::endl;  // create a version raytracerapp class??
+            std::cout << app_name << " " << version() << std::endl;
+            std::cout << "Compiler: " << project_compiler << std::endl;
             return 0;
         } else {
             dump.push_back(c);
@@ -70,8 +71,6 @@ int SkeletonApp::main(int argv, char* argc[])
 {
     // Start here if there are params
     std::vector<std::string> params;
-
-    name(argc[0]);
 
     for (int i = 1; i != argv; ++i) {
         params.push_back(argc[i]);

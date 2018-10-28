@@ -1,9 +1,15 @@
 #if !defined(CONFIG_H)
 #define CONFIG_H
 
+#include <string>
+
 constexpr int Major = @major@;
 constexpr int Minor = @minor@;
 constexpr int Patch = @patch@;
 constexpr int Compile = @compile@;
+
+const std::string project_name = "@name@";
+const std::string compiler_name = "@compiler@";
+const std::string compiler_version = "@compiler_version@";
 
 #endif // CONFIG_H
