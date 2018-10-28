@@ -4,7 +4,7 @@ project(
     version : '0.0.0',
     default_options: 
     [
-        'cpp_std=c++17',
+        'cpp_std=c++14',
         'b_lundef=false',
         'b_sanitize=none',
         'warning_level=3'
@@ -22,17 +22,19 @@ conf_data.set('minor', '2')
 conf_data.set('patch', '3')
 conf_data.set('compile', '0')
 
-configure_file(input : 'config.h.in',
-               output : 'config.h',
-               configuration : conf_data)
+configure_file(input : 'src/config.h.in',
+              output : 'config.h',
+              configuration : conf_data)
 
 skeleton_src = [
-    ]
+    'src/skeletonapp.cpp',
+    'src/main.cpp'
+]
 
 skeleton_include_directories = [
     include_directories('src/'),
     include_directories('include/'),
-	include_directories('thirdparty/include/')
+	include_directories('thirdparty/include/'),
     include_directories('/usr/lib/llvm-8/include/c++/v1/')
     ]
 

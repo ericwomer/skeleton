@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <ostream>
 
 class Skeleton {
 public:  // data types
@@ -14,8 +15,8 @@ public:  // data types
     } Version_t, *Version_p;
 
     // Public Interface
-    Skeleton();
-    virtual ~Skeleton() = 0;
+    Skeleton(){};
+    virtual ~Skeleton(){};
     virtual int main() = 0;
     virtual int main(int argv, char* argc[]) = 0;
     virtual int main(std::vector<std::string>& params) = 0;
@@ -23,14 +24,20 @@ public:  // data types
     virtual const std::string name() = 0;
     virtual void help() = 0;
     virtual void name(std::string name) = 0;
-    virtual Version_t version() = 0;
+    virtual Version_t version() const = 0;
+    virtual void version(const Version_t version) = 0;
 
-private:
+protected:
     // Private data members
     std::string app_name;
     std::vector<std::string> app_description;
 
-    Version_t versionNumber;
+    Version_t version_number;
 };
+
+inline std::ostream& operator<<(std::ostream& out, const Skeleton::Version_t& obj)
+{
+    return out << obj.major << "." << obj.minor << "." << obj.patch << "." << obj.compile;
+}
 
 #endif  // Skeleton_H
