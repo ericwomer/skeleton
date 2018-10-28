@@ -1,9 +1,13 @@
 # Ignore the build and lib dirs
 build/*
-
 # Ignore any executables
-bin/*
+dist/bin/*
+dist/lib/*
+dist/include/*
+dist/share/*
 
 # Ignore OS specific files
 .DS_Store
 
+# Do not ignre .keep files
+!.keep
