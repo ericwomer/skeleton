@@ -10,7 +10,7 @@ SkeletonApp::SkeletonApp()
 {
     version({Major, Minor, Patch, Compile});
     name(project_name);
-    app_description.push_back(std::string("raytracerapp \n"));
+    app_description.push_back(std::string("Skeleton \n"));
     app_description.push_back(std::string("** nothing else follows ** \n"));
 }
 
@@ -19,8 +19,6 @@ SkeletonApp::SkeletonApp()
 // with member vars.
 int SkeletonApp::main()
 {
-    // Start Main Application Here.
-
     return 0;
 }
 
@@ -73,7 +71,6 @@ int SkeletonApp::main(int argv, char* argc[])
 {
     // Start here if there are params
     std::vector<std::string> params;
-
     for (int i = 1; i != argv; ++i) {
         params.push_back(argc[i]);
     }

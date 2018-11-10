@@ -21,6 +21,8 @@ BraceWrapping:
 
 
 AccessModifierOffset: -4
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: true
 AllowShortFunctionsOnASingleLine: InlineOnly  
 BreakConstructorInitializers: BeforeColon 
 BreakConstructorInitializersBeforeComma: true
@@ -33,6 +35,12 @@ CompactNamespaces: true
 SortIncludes: false
 SpaceBeforeAssignmentOperators: true
 SpaceBeforeParens: ControlStatements
+SpaceAfterTemplateKeyword: true
+SpaceInEmptyParentheses: false
+SpacesInContainerLiterals: true
+SpacesInCStyleCastParentheses: false
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
 
 PenaltyReturnTypeOnItsOwnLine: 1000
 PenaltyBreakBeforeFirstCallParameter: 1000
