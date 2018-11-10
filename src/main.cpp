@@ -7,9 +7,19 @@ SkeletonApp skeleton;
 int main(int argv, char* argc[])
 {
     if (argv == 1) {
-        skeleton.main();
+        try {
+            skeleton.main();
+        } catch (const std::exception& e) {
+            std::cerr << e.what() << std::endl;
+            return EXIT_FAILURE;
+        }
     } else {
-        skeleton.main(argv, argc);
+        try {
+            skeleton.main(argv, argc);
+        } catch (const std::exception& e) {
+            std::cerr << e.what() << std::endl;
+            return EXIT_FAILURE;
+        }
     }
-    return 0;
+    return EXIT_SUCCESS;
 }
