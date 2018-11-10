@@ -16,7 +16,11 @@
         {
             "label": "Build",
             "type": "shell",
-            "command": "ninja -C build"
+            "command": "ninja -C build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         },
         {
             "label": "Clean",
