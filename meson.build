@@ -5,7 +5,7 @@ project(
     version : '0.0.0', # This is oveverridden in the conf_data section
     default_options: 
     [
-        'cpp_std=c++14',
+        'cpp_std=c++17',
         'b_lundef=false',
         'b_sanitize=none',
         'warning_level=3',
