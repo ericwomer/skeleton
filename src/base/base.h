@@ -5,12 +5,17 @@
 #include <vector>
 #include <ostream>
 
+namespace Application {
+
 /**
- * @brief Skeleton Base class
+ * @brief Base Base class
  * 
  */
-class Skeleton {
-public:  /// somehing ///
+class Base {
+public:
+    // Public Interface
+
+    // Version Struct
     typedef struct Version_s {
         int major;
         int minor;
@@ -18,12 +23,17 @@ public:  /// somehing ///
         int compile;
     } Version_t, *Version_p;
 
-    // Public Interface
-    Skeleton(){};
-    virtual ~Skeleton(){};
+    // Constructor && Destructor
+    Base(){};
+    virtual ~Base(){};
+
+    // Methods
+    virtual int main(std::vector<std::string>& params) = 0;
+
+protected:
+    // Private Interface
+    // Methods
     virtual int               main() = 0;
-    virtual int               main(int argv, char* argc[]) = 0;
-    virtual int               main(std::vector<std::string>& params) = 0;
     virtual int               size() = 0;
     virtual const std::string name() = 0;
     virtual void              help() = 0;
@@ -32,12 +42,10 @@ public:  /// somehing ///
     virtual Version_t         version() const = 0;
     virtual void              version(const Version_t& version) = 0;
 
-protected:
-    // Private data members
+    // Data Members
     std::string              app_name;
     std::vector<std::string> app_description;
-
-    Version_t version_number;
+    Version_t                version_number;
 };
 
 /**
@@ -47,9 +55,11 @@ protected:
  * @param obj the object being written to the output stream
  * @return std::ostream& 
  */
-inline std::ostream& operator<<(std::ostream& out, const Skeleton::Version_t& obj)
+inline std::ostream& operator<<(std::ostream& out, const Base::Version_t& obj)
 {
     return out << obj.major << "." << obj.minor << "." << obj.patch << "." << obj.compile;
 }
+
+}  // namespace Application
 
 #endif  // Skeleton_H

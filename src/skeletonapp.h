@@ -11,15 +11,24 @@
 #include <cstdint>
 #include <algorithm>
 
-#include "skeleton/skeleton.h"
+#include "base/base.h"
 
-class SkeletonApp : public Skeleton {
+namespace Application {
+
+class SkeletonApp : public Base {
 public:
+    // Public Interface
+    // Constructor && Destructor
     SkeletonApp();
     virtual ~SkeletonApp(){};
+
+    // Methods
+    virtual int main(std::vector<std::string>& params) override;
+
+private:
+    // Private Interface
+    // Methods
     virtual int               main() override;
-    virtual int               main(int argv, char* argc[]) override;
-    virtual int               main(std::vector<std::string>& params) override;
     virtual int               size() override { return sizeof(this); };
     virtual const std::string name() override { return app_name; };
     virtual void              help() override;
@@ -28,8 +37,8 @@ public:
     virtual Version_t         version() const override { return version_number; }
     virtual void              version(const Version_t& version) override { version_number = version; };
 
-private:
+    // Data Members
     std::vector<std::string> actions;
 };
-
+}  // namespace Application
 #endif  // SKELETONAPP_H

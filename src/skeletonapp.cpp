@@ -6,6 +6,8 @@
 #include "skeletonapp.h"
 #include "config.h"
 
+namespace Application {
+
 SkeletonApp::SkeletonApp()
 {
     version({Major, Minor, Patch, Compile});
@@ -19,7 +21,7 @@ SkeletonApp::SkeletonApp()
 // with member vars.
 int SkeletonApp::main()
 {
-    return 0;
+    return EXIT_SUCCESS;
 }
 
 // This is the main that handles parameters
@@ -65,19 +67,6 @@ int SkeletonApp::main(std::vector<std::string>& params)
     return main();
 }
 
-// This main converts c style parameters to c++ strings
-// then passes it to main that handles the actual parametrs.
-int SkeletonApp::main(int argv, char* argc[])
-{
-    // Start here if there are params
-    std::vector<std::string> params;
-    for (int i = 1; i != argv; ++i) {
-        params.push_back(argc[i]);
-    }
-
-    return main(params);
-}
-
 void SkeletonApp::help(void)
 {
     std::cout << "Usage: " << app_name << " [options] files...\n\n";
@@ -88,3 +77,5 @@ void SkeletonApp::help(void)
     std::cout << " \t\t\t passed to the program.\n";
     std::cout << " -V, --version \t\t Print the version and exit.\n";
 }
+
+}  // namespace Application
