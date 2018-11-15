@@ -6,12 +6,10 @@ project(
     default_options: 
     [
         'cpp_std=c++17',
-        'b_lundef=false',
-        'b_sanitize=none',
-        'warning_level=3',
+        'warning_level=3'
     ],
     meson_version: '>=0.48.0'
-)
+    )
 
 executable_name = 'skeleton'
 
@@ -39,7 +37,7 @@ configure_file(input : 'src/config.h.in',
 skeleton_src = [
     'src/skeletonapp.cpp',
     'src/main.cpp'
-]
+    ]
 
 skeleton_include_directories = [
     include_directories('src/'),
@@ -48,14 +46,24 @@ skeleton_include_directories = [
     include_directories('/usr/lib/llvm-8/include/c++/v1/')
     ]
 
-skeleton_cflags = ['-stdlib=libc++']
+skeleton_cflags = [
+    '-stdlib=libc++'
+    ]
+
 skeleton_ldflags = [
-    '-lm',
     '-lc++',
-    '-lc++abi']
+    '-lc++abi'
+    ]
 
+math = cpp.find_library('m', required: false)
 
-skeleton_deps = []
+skeleton_deps = [
+    math
+    ]
+
+if get_option('enable-threads')
+    skeleton_deps += dependency('threads') #This enables what ever on Windows and pthreads on Linux/Mac/Unix
+endif
 
 skeleton = executable(
     executable_name,
@@ -68,3 +76,7 @@ skeleton = executable(
 )
 
 install_data('LICENSE', install_dir: join_paths('share/doc', executable_name))
+
+if get_option('build-docs')
+    subdir('doc')
+endif

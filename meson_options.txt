@@ -1,0 +1,2 @@
+option('build-docs', type: 'boolean', value: false, description: 'Build the api documentation')
+option('enable-threads', type: 'boolean', value: false, description: 'Build with multithreading support')
