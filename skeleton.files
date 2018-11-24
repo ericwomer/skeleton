@@ -1,0 +1,16 @@
+LICENSE
+README.md
+clang-format.sh
+clang-tidy.sh
+doc/Doxyfile.in
+doc/README.txt
+doc/meson.build
+dump/dump.h
+meson.build
+meson_options.txt
+skeleton-project.code-workspace
+src/base/base.h
+src/config.h.in
+src/main.cpp
+src/skeletonapp.cpp
+src/skeletonapp.h
