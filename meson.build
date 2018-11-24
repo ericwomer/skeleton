@@ -3,7 +3,7 @@ project(
     'Skeletal Application Framework',
     'cpp',
     version : '0.0.0', # This is oveverridden in the conf_data section
-    default_options: 
+    default_options:
     [
         'cpp_std=c++17',
         'warning_level=3'
@@ -35,7 +35,7 @@ configure_file(input : 'src/config.h.in',
               configuration : conf_data)
 
 skeleton_src = [
-    'src/skeletonapp.cpp',
+    'src/application.cpp',
     'src/main.cpp'
     ]
 
@@ -68,7 +68,7 @@ endif
 skeleton = executable(
     executable_name,
     skeleton_src,
-    install : true, 
+    install : true,
     dependencies: skeleton_deps,
     include_directories: skeleton_include_directories,
     cpp_args: skeleton_cflags,

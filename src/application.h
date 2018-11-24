@@ -13,14 +13,14 @@
 
 #include "base/base.h"
 
-namespace Application {
+namespace Skeleton {
 
-class SkeletonApp : public Base {
+class Application : public Base::ApplicationBase {
 public:
     // Public Interface
     // Constructor && Destructor
-    SkeletonApp();
-    virtual ~SkeletonApp(){};
+    Application();
+    virtual ~Application(){};
 
     // Methods
     virtual int main(std::vector<std::string>& params) override;
@@ -31,14 +31,14 @@ private:
     virtual int               main() override;
     virtual int               size() override { return sizeof(this); };
     virtual const std::string name() override { return app_name; };
-    virtual void              help() override;
     virtual std::string       name() const override { return app_name; };
     virtual void              name(const std::string& name) override { app_name = name; };
-    virtual Version_t         version() const override { return version_number; }
+    virtual void              help() override;
+    virtual void              version() const override;
     virtual void              version(const Version_t& version) override { version_number = version; };
 
     // Data Members
     std::vector<std::string> actions;
 };
-}  // namespace Application
+}  // namespace Skeleton
 #endif  // SKELETONAPP_H

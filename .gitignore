@@ -6,8 +6,14 @@ dist/lib/*
 dist/include/*
 dist/share/*
 
+# Ignore IDE generated files
+.codelite/*
+
 # Ignore OS specific files
 .DS_Store
 
-# Do not ignre .keep files
+# Ignore editor backup files
+*~
+
+# Do not ignore .keep files
 !.keep
