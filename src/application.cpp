@@ -33,22 +33,15 @@ int Application::main(std::vector<std::string>& params)
   std::vector<std::string> dump;
 
   // iterate through params to remove the -- from the text
-  for(std::vector<std::string>::const_iterator i = params.begin(); i != params.end(); ++i)
-  {
-    if(*i == "--help" || *i == "-h")
-    {
+  for (std::vector<std::string>::const_iterator i = params.begin(); i != params.end(); ++i) {
+    if (*i == "--help" || *i == "-h") {
       version();
       help();
       return EXIT_SUCCESS;
-    }
-    else if(*i == "--version" || *i == "-v")
-    {
+    } else if (*i == "--version" || *i == "-v") {
       version();  // Eric: BUG: Not able to return EXIT_SUCCESS here atm!
-    }
-    else
-    {  // catch all to make sure there are no invalid parameters
-      if(*i != params[0].data())
-      {
+    } else {      // catch all to make sure there are no invalid parameters
+      if (*i != params[0].data()) {
         std::cout << *i << " was an unknown parameter! \n";
         help();
       }
