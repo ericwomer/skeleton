@@ -12,9 +12,7 @@ project(
     )
 
 executable_name = 'skeleton'
-
 pkgconfig = import('pkgconfig')
-
 cpp = meson.get_compiler('cpp')
 
 conf_data = configuration_data()
