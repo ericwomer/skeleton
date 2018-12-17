@@ -33,7 +33,8 @@ configure_file(input : 'src/config.h.in',
               configuration : conf_data)
 
 skeleton_src = [
-    'src/application.cpp',
+    'src/skeleton.cpp',
+    'src/base/base.cpp',
     'src/main.cpp'
     ]
 

@@ -1,22 +1,32 @@
+#include "skeleton.h"
+
 #include <iostream>
+#include <vector>
+#include <memory>
 
-#include "application.h"
-
-Skeleton::Application app;
+using std::cerr;
+using std::cout;
+using std::exception;
+using std::make_unique;
+using std::string;
+using std::unique_ptr;
+using std::vector;
 
 int main(int argc, char* argv[])
 {
+  // Application class that calls main
+  unique_ptr<Base::Application> application = make_unique<Skeleton>();
+
   // Convert c style list of strings to a c++ vector of strings
-  std::vector<std::string> params;
+  vector<string> params;
   for (int i = 0; i != argc; ++i) {
     params.push_back(argv[i]);
   }
 
-  // Eric: Empty!
   try {
-    app.main(params);
-  } catch (const std::exception& e) {
-    std::cerr << e.what() << std::endl;
+    application->main(params);
+  } catch (const exception& e) {
+    cerr << e.what() << '\n';
     return EXIT_FAILURE;
   }
 

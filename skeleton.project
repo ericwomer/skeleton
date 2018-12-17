@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Project Name="skeleton" Version="10.0.0" InternalType="">
   <VirtualDirectory Name="src">
-    <File Name="src/application.h"/>
-    <File Name="src/application.cpp"/>
+    <File Name="src/skeleton.cpp"/>
+    <File Name="src/skeleton.h"/>
     <VirtualDirectory Name="base">
+      <File Name="src/base/base.cpp"/>
       <File Name="src/base/base.h"/>
     </VirtualDirectory>
     <File Name="src/main.cpp"/>
