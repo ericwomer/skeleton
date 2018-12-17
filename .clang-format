@@ -20,7 +20,7 @@ BraceWrapping:
   SplitEmptyNamespace: true
 
 
-AccessModifierOffset: -4
+AccessModifierOffset: -2
 AlignAfterOpenBracket: Align
 AlignConsecutiveAssignments: true
 AlignConsecutiveDeclarations: true
