@@ -1,2 +1,3 @@
 option('build-docs', type: 'boolean', value: false, description: 'Build the api documentation')
 option('enable-threads', type: 'boolean', value: false, description: 'Build with multithreading support')
+option('with-libcxx', type: 'boolean', value: false, description: 'Link against llvm\'s standard library libc++ instead of gnu\'s stdlibc++')
