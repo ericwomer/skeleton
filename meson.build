@@ -6,7 +6,7 @@ project(
     default_options:
     [
         'cpp_std=c++17',
-        'warning_level=3'
+        'warning_level=1'
     ],
     meson_version: '>=0.48.0'
     )
@@ -41,28 +41,37 @@ skeleton_src = [
 skeleton_include_directories = [
     include_directories('src/'),
     include_directories('include/'),
-	include_directories('thirdparty/include/'),
-    include_directories('/usr/lib/llvm-8/include/c++/v1/')
+    include_directories('thirdparty/include/'),
     ]
 
-skeleton_cflags = [
-    '-stdlib=libc++'
-    ]
-
-skeleton_ldflags = [
-    '-lc++',
-    '-lc++abi'
-    ]
+skeleton_cxxflags = []
+skeleton_ldflags = []
 
 math = cpp.find_library('m', required: false)
 
 skeleton_deps = [
     math
-    ]
+]
 
 if get_option('enable-threads')
     skeleton_deps += dependency('threads') #This enables what ever on Windows and pthreads on Linux/Mac/Unix
 endif
+
+if get_option('with-libcxx')
+  skeleton_include_directories += [
+    include_directories('/usr/lib/llvm-7/include/c++/v1/')
+  ]
+
+  skeleton_ldflags += [
+    '-lc++',
+    '-lc++abi'
+  ]
+
+  skeleton_cxxflags += [
+    '-stdlib=libc++'
+  ]
+endif
+
 
 skeleton = executable(
     executable_name,
@@ -70,7 +79,7 @@ skeleton = executable(
     install : true,
     dependencies: skeleton_deps,
     include_directories: skeleton_include_directories,
-    cpp_args: skeleton_cflags,
+    cpp_args: skeleton_cxxflags,
     link_args: skeleton_ldflags
 )
 
