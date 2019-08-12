@@ -29,6 +29,9 @@ int Application::main(vector<string>& params)
   executable_name = params[0].data();
   executable_name.erase(0, 2);
 
+  // Remove the now un-needed application name from the list of handled parameters.
+  params.erase(params.begin());
+
   vector<string> child;
 
   // Process the parameters if applicable at this time.
@@ -50,23 +53,24 @@ int Application::main(vector<string>& params)
   // Pass the non default parameters to the child proccess that called the derived main
   params.clear();
   params = child;
+
   return EXIT_SUCCESS;
 }
 
 void Application::help(void)
 {
-  cout << "Usage: " << executable_name << " [options] files...\n\n";
+  cout << "Usage: " << executable_name << " [options] files...\n";
   cout << "Options: \n";
   cout << " -h, --help \t\t Print this help message and exit the program.\n";
-  cout << " -v, --version \t\t Print the version and exit.\n";
+  cout << " -v, --version \t\t Print the version and exit.\n\n";
 }
 
 void Application::version() const
 {
   cout << app_name << " version " << version_number << "\n";
-  cout << "Compiler: " << compiler_name << " " << compiler_version << "\n";
-  cout << "Operating System: " << operating_system << "\n";
-  cout << "Architecture: " << cpu_family << std::endl;
+  cout << "Compiler: \t\t" << compiler_name << " " << compiler_version << "\n";
+  cout << "Operating System: \t" << operating_system << "\n";
+  cout << "Architecture: \t\t" << cpu_family << "\n\n";
 }
 
 }  // namespace Base
