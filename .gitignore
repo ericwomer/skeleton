@@ -8,6 +8,11 @@ dist/share/*
 
 # Ignore IDE generated files
 .codelite/*
+.idea/*
+*.project
+
+# Ignore IDE (Usually clion created) cmake build directories.
+cmake-build*/*
 
 # Ignore OS specific files
 .DS_Store
