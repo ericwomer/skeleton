@@ -3,8 +3,6 @@
 #include "config.h"
 
 #include <iostream>
-#include <limits>
-#include <sstream>
 #include <string>
 
 using std::cerr;
@@ -15,10 +13,8 @@ using std::vector;
 
 namespace Base {
 
-Application::Application()
+Application::Application() : app_name(project_name), version_number({Major, Minor, Patch, Compile})
 {
-  version({Major, Minor, Patch, Compile});
-  name(project_name);
   app_description.push_back(string("Skeleton \n"));
   app_description.push_back(string("** nothing else follows ** \n"));
 }

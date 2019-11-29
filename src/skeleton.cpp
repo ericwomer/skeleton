@@ -9,14 +9,6 @@ using std::cout;
 using std::string;
 using std::vector;
 
-Skeleton::Skeleton()
-{
-}
-
-Skeleton::~Skeleton()
-{
-}
-
 int Skeleton::main(vector<string>& params)
 {
   // Call the parent main(vector<string> params)
@@ -27,7 +19,7 @@ int Skeleton::main(vector<string>& params)
     return EXIT_SUCCESS;
   }
 
-  // Do your work here.
+  /** Do your work here. **/
 
   return EXIT_SUCCESS;
 }
