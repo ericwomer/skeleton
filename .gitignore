@@ -11,6 +11,7 @@ dist/share/*
 .codelite/*
 .idea/*
 *.project
+*.workspace
 
 # Ignore IDE (Usually clion created) cmake build directories.
 cmake-build*/*
