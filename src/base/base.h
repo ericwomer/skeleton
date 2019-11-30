@@ -30,11 +30,11 @@ public:
 
   // Methods
   virtual int               main(std::vector<std::string>& params);
-  virtual int               size() { return sizeof(this); };
+  virtual int               size() { return sizeof(*this); };
   virtual std::string       name() const { return app_name; };
   virtual const std::string name() { return app_name; };
   virtual void              name(const std::string& name) { app_name = name; };
-  virtual void              help();
+  virtual void              help() const;
   virtual void              version() const;
   virtual void              version(const Version& version) { version_number = version; };
 

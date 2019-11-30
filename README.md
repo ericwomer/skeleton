@@ -1,1 +1,1 @@
-Skeleton Applicaiont Project
+Skeleton Application Project

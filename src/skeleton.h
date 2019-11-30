@@ -6,7 +6,7 @@
 class Skeleton : public Base::Application {
 public:
   Skeleton() = default;
-  virtual ~Skeleton() = default;
+  ~Skeleton() = default ;
   int main(std::vector<std::string>& params) override;
 };
 

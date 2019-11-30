@@ -1,11 +1,15 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.15)
 project(skeleton VERSION 0.0.1.0)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_COMPILER "clang++")
+# set(CMAKE_CXX_STANDARD 17)
 
-include_directories(${CMAKE_BINARY_DIR})
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+include_directories("${CMAKE_BINARY_DIR}")
 include_directories(${PROJECT_SOURCE_DIR})
 include_directories(thirdparty/include)
+include_directories(/usr/lib/llvm-9/include/c++/v1/)
 
 # build configuration header file
 set(name ${CMAKE_PROJECT_NAME})
@@ -26,13 +30,27 @@ configure_file(
         ${PROJECT_BINARY_DIR}/config.h
 )
 
-add_executable(skeleton
-        src/base/base.cpp
-        src/base/base.h
-        src/config.h.in
-        src/skeleton.cpp
-        src/skeleton.h
-        src/main.cpp
-        )
+add_compile_options(-Wall)
+add_compile_options(-pipe)
+add_compile_options(-fPIC)
+add_compile_options(-std=c++17)
+add_compile_options(-stdlib=libc++)
+add_compile_options (-fcolor-diagnostics)
+# add_compile_options(-nostdinc++)
 
-target_link_libraries(skeleton)
+add_executable(skeleton
+    src/base/base.cpp
+    src/base/base.h
+    src/config.h.in
+    src/skeleton.cpp
+    src/skeleton.h
+    src/main.cpp
+    )
+
+target_link_libraries(skeleton
+        c++
+        m
+        c
+        gcc_s
+        gcc)
+

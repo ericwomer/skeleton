@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
   // Convert c style list of strings to a c++ vector of strings
   vector<string> params;
   for (int i = 0; i != argc; ++i) {
-    params.push_back(argv[i]);
+    params.push_back(argv[i]); // NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
   }
 
   try {

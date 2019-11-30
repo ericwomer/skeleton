@@ -1,5 +1,5 @@
 ---
-Checks:          'clang-diagnostic-*,clang-analyzer-*,-cppcoreguidelines-*,-clang-analyzer-alpha.*,-clang-analyzer-osx.*,-clang-analyzer-optin.osx.*,-*,cppcoreguidelines-*,-android-*,-clang-analyzer-osx.*,-clang-analyzer-optin.osx.*'
+Checks:          '-*,modernize-*,cppcoreguidelines-*'
 WarningsAsErrors: ''
 HeaderFilterRegex: ''
 AnalyzeTemporaryDtors: false

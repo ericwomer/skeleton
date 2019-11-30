@@ -22,7 +22,7 @@ Application::Application() : app_name(project_name), version_number({Major, Mino
 // This is Base::Application::main
 int Application::main(vector<string>& params)
 {
-  executable_name = params[0].data();
+  executable_name = params[0];
   executable_name.erase(0, 2);
 
   // Remove the now un-needed application name from the list of handled parameters.
@@ -46,14 +46,14 @@ int Application::main(vector<string>& params)
     }
   }
 
-  // Pass the non default parameters to the child proccess that called the derived main
+  // Pass the non default parameters to the child process that called the derived main
   params.clear();
   params = child;
 
   return EXIT_SUCCESS;
 }
 
-void Application::help(void)
+void Application::help() const
 {
   cout << "Usage: " << executable_name << " [options] files...\n";
   cout << "Options: \n";

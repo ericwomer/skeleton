@@ -1,7 +1,6 @@
 
 #include "skeleton.h"
 
-#include <iostream>
 #include <string>
 #include <algorithm>
 

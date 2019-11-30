@@ -2,7 +2,7 @@
 project(
     'Skeletal Application Framework',
     'cpp',
-    version : '0.0.0', # This is oveverridden in the conf_data section
+    version : '0.0.0', # This is overridden in the conf_data section
     default_options:
     [
         'cpp_std=c++17',
