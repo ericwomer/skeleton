@@ -8,7 +8,7 @@ using std::cout;
 using std::string;
 using std::vector;
 
-int Skeleton::main(vector<string>& params)
+auto Skeleton::main(vector<string>& params) -> int
 {
   // Call the parent main(vector<string> params)
   Base::Application::main(params);

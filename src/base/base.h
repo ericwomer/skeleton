@@ -29,10 +29,10 @@ public:
   virtual ~Application() = default;
 
   // Methods
-  virtual int               main(std::vector<std::string>& params);
-  virtual int               size() { return sizeof(*this); };
-  virtual std::string       name() const { return app_name; };
-  virtual const std::string name() { return app_name; };
+  virtual auto               main(std::vector<std::string>& params) -> int;
+  virtual auto               size() -> int { return sizeof(*this); };
+  // virtual std::string    name() const { return app_name; }; // NOLINT (modernize-use-trailing-return-type) // This is pointless as it returns a copy and not the original reference.
+  virtual auto name() -> const std::string { return app_name; }; //  (modernize-use-trailing-return-type)
   virtual void              name(const std::string& name) { app_name = name; };
   virtual void              help() const;
   virtual void              version() const;
@@ -54,7 +54,7 @@ private:
  * @param obj the object being written to the output stream
  * @return std::ostream&
  */
-inline std::ostream& operator<<(std::ostream& out, const Application::Version& obj)
+inline auto operator<<(std::ostream& out, const Application::Version& obj) -> std::ostream&
 {
   return out << obj.major << "." << obj.minor << "." << obj.patch << "." << obj.compile;
 }

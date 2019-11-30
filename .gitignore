@@ -1,5 +1,6 @@
 # Ignore the build and lib dirs
 build/*
+
 # Ignore any executables
 dist/bin/*
 dist/lib/*
@@ -19,6 +20,7 @@ cmake-build*/*
 
 # Ignore editor backup files
 *~
+*.orig
 
 # Do not ignore .keep files
 !.keep

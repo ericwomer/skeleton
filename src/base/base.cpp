@@ -15,12 +15,12 @@ namespace Base {
 
 Application::Application() : app_name(project_name), version_number({Major, Minor, Patch, Compile})
 {
-  app_description.push_back(string("Skeleton \n"));
-  app_description.push_back(string("** nothing else follows ** \n"));
+  app_description.emplace_back(string(app_name));
+  app_description.emplace_back(string("** nothing else follows ** \n"));
 }
 
 // This is Base::Application::main
-int Application::main(vector<string>& params)
+auto Application::main(vector<string>& params) -> int
 {
   executable_name = params[0];
   executable_name.erase(0, 2);
@@ -35,14 +35,14 @@ int Application::main(vector<string>& params)
     if (param == "--help" || param == "-h") {
       version();
       help();
-      child.push_back("exit");
+      child.emplace_back("exit");
       break;
     } else if (param == "--version" || param == "-v") {
       version();
-      child.push_back("exit");
+      child.emplace_back("exit");
       break;
     } else {  // Eric: set this up to pass the remainder params back to the child for the derived class to handle custom parameters
-      child.push_back(param);
+      child.emplace_back(param);
     }
   }
 

@@ -12,7 +12,7 @@ using std::string;
 using std::unique_ptr;
 using std::vector;
 
-int main(int argc, char* argv[])
+auto main(int argc, char* argv[]) -> int
 {
   // Application class that calls main
   unique_ptr<Base::Application> application = make_unique<Skeleton>();
@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
   // Convert c style list of strings to a c++ vector of strings
   vector<string> params;
   for (int i = 0; i != argc; ++i) {
-    params.push_back(argv[i]); // NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+    params.emplace_back(argv[i]); // NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
   }
 
   try {
