@@ -29,14 +29,15 @@ public:
   virtual ~Application() = default;
 
   // Methods
-  virtual auto               main(std::vector<std::string>& params) -> int;
-  virtual auto               size() -> int { return sizeof(*this); };
-  // virtual std::string    name() const { return app_name; }; // NOLINT (modernize-use-trailing-return-type) // This is pointless as it returns a copy and not the original reference.
-  virtual auto name() -> const std::string { return app_name; }; //  (modernize-use-trailing-return-type)
-  virtual void              name(const std::string& name) { app_name = name; };
-  virtual void              help() const;
-  virtual void              version() const;
-  virtual void              version(const Version& version) { version_number = version; };
+  virtual auto main(std::vector<std::string>& params) -> int;
+  virtual auto size() -> int { return sizeof(*this); };
+  virtual auto name() -> const std::string { return app_name; };
+  virtual auto name(const std::string& name) -> void { app_name = name; };
+
+  virtual auto help() const -> void;
+  virtual auto version() const -> void;
+
+  virtual auto version(const Version& version) -> void { version_number = version; };
 
 private:
   // Data Members

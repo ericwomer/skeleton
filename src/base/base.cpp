@@ -13,11 +13,14 @@ using std::vector;
 
 namespace Base {
 
-Application::Application() : app_name(project_name), version_number({Major, Minor, Patch, Compile})
+Application::Application()
+
+    : app_name(project_name)
+    , version_number({Major, Minor, Patch, Compile})
 {
-  app_description.emplace_back(string(app_name));
-  app_description.emplace_back(string("** nothing else follows ** \n"));
-}
+  app_description.emplace_back(std::string(app_name));
+  app_description.emplace_back(std::string("** nothing else follows ** \n"));
+};
 
 // This is Base::Application::main
 auto Application::main(vector<string>& params) -> int
@@ -53,20 +56,20 @@ auto Application::main(vector<string>& params) -> int
   return EXIT_SUCCESS;
 }
 
-void Application::help() const
+auto Application::help() const -> void
 {
-  cout << "Usage: " << executable_name << " [options] files...\n";
-  cout << "Options: \n";
-  cout << " -h, --help \t\t Print this help message and exit the program.\n";
-  cout << " -v, --version \t\t Print the version and exit.\n\n";
-}
+  std::cout << "Usage: " << executable_name << " [options] files...\n";
+  std::cout << "Options: \n";
+  std::cout << " -h, --help \t\t Print this help message and exit the program.\n";
+  std::cout << " -v, --version \t\t Print the version and exit.\n\n";
+};
 
-void Application::version() const
+auto Application::version() const -> void
 {
-  cout << app_name << " version " << version_number << "\n";
-  cout << "Compiler: \t\t" << compiler_name << " " << compiler_version << "\n";
-  cout << "Operating System: \t" << operating_system << "\n";
-  cout << "Architecture: \t\t" << cpu_family << "\n\n";
-}
+  std::cout << app_name << " version " << version_number << "\n";
+  std::cout << "Compiler: \t\t" << compiler_name << " " << compiler_version << "\n";
+  std::cout << "Operating System: \t" << operating_system << "\n";
+  std::cout << "Architecture: \t\t" << cpu_family << "\n\n";
+};
 
 }  // namespace Base
