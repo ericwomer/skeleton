@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.15)
-project(skeleton VERSION 0.0.1.0)
+set(CMAKE_CXX_COMPILER clang++ CACHE STRING "C++ compiler" FORCE)
 
-set(CMAKE_CXX_COMPILER "clang++")
-# set(CMAKE_CXX_STANDARD 17)
+project(skeleton VERSION 0.0.1.0)
+enable_language(CXX)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -44,13 +44,12 @@ add_executable(skeleton
     src/config.h.in
     src/skeleton.cpp
     src/skeleton.h
-    src/main.cpp
-    )
+    src/main.cpp )
 
 target_link_libraries(skeleton
-        c++
-        m
-        c
-        gcc_s
-        gcc)
+    c++
+    m
+    c
+    gcc_s
+    gcc )
 
