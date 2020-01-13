@@ -6,13 +6,15 @@
 #include <vector>
 #include <ostream>
 
+#include "log/log.h"
+
 namespace Base {
 
 /**
  * @brief Base Base class
  *
  */
-class Application {
+class Application : public Log {
 public:
   // Data Types
   // Version Struct

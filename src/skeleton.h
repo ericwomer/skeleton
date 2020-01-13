@@ -2,8 +2,9 @@
 #define SKELETON_H
 
 #include "base/base.h"
+#include "log/log.h"
 
-class Skeleton : public Base::Application {
+class Skeleton : public Base::Application { // Eric: Don't need to inherit from Log as Base::Application already does.
 public:
   Skeleton()           = default;
   ~Skeleton() override = default;

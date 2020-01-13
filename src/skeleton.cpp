@@ -1,8 +1,8 @@
 
-#include "skeleton.h"
-
 #include <string>
 #include <algorithm>
+
+#include "skeleton.h"
 
 using std::cout;
 using std::string;
@@ -10,6 +10,8 @@ using std::vector;
 
 auto Skeleton::main(vector<string>& params) -> int
 {
+  log_init("Skeleton");
+
   // Call the parent main(vector<string> params)
   Base::Application::main(params);
 

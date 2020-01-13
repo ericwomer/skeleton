@@ -1,8 +1,10 @@
-#include "skeleton.h"
 
 #include <iostream>
 #include <vector>
 #include <memory>
+
+#include "skeleton.h"
+#include "log/log.h"
 
 using std::cerr;
 using std::cout;
@@ -14,6 +16,11 @@ using std::vector;
 
 auto main(int argc, char* argv[]) -> int
 {
+  // Eric: Use Log log for main until I find something better/different.
+  Log log;
+  log.log_init("Main");
+  log.info("Starting ...");
+
   // Application class that calls main
   unique_ptr<Base::Application> application = make_unique<Skeleton>();
 
@@ -26,7 +33,7 @@ auto main(int argc, char* argv[]) -> int
   try {
     application->main(params);
   } catch (const exception& e) {
-    cerr << e.what() << '\n';
+    log.error(e.what());
     return EXIT_FAILURE;
   }
 

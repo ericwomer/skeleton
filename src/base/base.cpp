@@ -18,6 +18,8 @@ Application::Application()
     : app_name(project_name)
     , version_number({Major, Minor, Patch, Compile})
 {
+  log_init("Application");
+
   app_description.emplace_back(std::string(app_name));
   app_description.emplace_back(std::string("** nothing else follows ** \n"));
 };
