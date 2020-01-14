@@ -1,4 +1,3 @@
-
 project(
     'Skeletal Application Framework',
     'cpp',
@@ -14,6 +13,7 @@ project(
 executable_name = 'skeleton'
 pkgconfig = import('pkgconfig')
 cpp = meson.get_compiler('cpp')
+cpp_family = cpp.get_id()
 
 conf_data = configuration_data()
 conf_data.set('name', meson.project_name())
@@ -35,13 +35,12 @@ configure_file(input : 'src/config.h.in',
 skeleton_src = [
     'src/skeleton.cpp',
     'src/base/base.cpp',
-    'src/main.cpp'
+    'src/main.cpp',
     ]
 
 skeleton_include_directories = [
     include_directories('src/'),
     include_directories('include/'),
-    include_directories('thirdparty/include/'),
     ]
 
 skeleton_cxxflags = []
@@ -50,28 +49,53 @@ skeleton_ldflags = []
 math = cpp.find_library('m', required: false)
 
 skeleton_deps = [
-    math
-]
+        math
+    ]
 
 if get_option('enable-threads')
     skeleton_deps += dependency('threads') #This enables what ever on Windows and pthreads on Linux/Mac/Unix
 endif
 
-if get_option('with-libcxx')
-  skeleton_include_directories += [
-    include_directories('/usr/lib/llvm-7/include/c++/v1/')
-  ]
+if cpp_family == 'gcc'
+    skeleton_cxxflags += ['-fdiagnostics-color=always']
+    skeleton_include_directories += [
+        include_directories('/usr/include')
+    ]
+elif cpp_family == 'clang'
+    skeleton_cxxflags += ['-fcolor-diagnostics']
 
-  skeleton_ldflags += [
-    '-lc++',
-    '-lc++abi'
-  ]
+    if get_option('with-libcxx')
+      skeleton_include_directories += [
+        include_directories(' /usr/lib/llvm-9/include/c++/v1/')
+      ]
 
-  skeleton_cxxflags += [
-    '-stdlib=libc++'
-  ]
+      skeleton_ldflags += [
+        '-lc++',
+        '-lc++abi'
+      ]
+
+      skeleton_cxxflags += [
+        '-stdlib=libc++'
+      ]
+    endif
+
+else
+    # Do something else for MSVC?
 endif
 
+if get_option('enable-sdlog')
+    skeleton_include_directories += [
+        include_directories('thirdparty/spdlog/include')
+    ]
+
+    skeleton_cxxflags += [
+        '-DUSE_SPDLOG'
+    ]
+
+     skeleton_src += [
+        'src/log/log.cpp'
+     ]
+endif
 
 skeleton = executable(
     executable_name,

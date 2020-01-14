@@ -1,3 +1,4 @@
 option('build-docs', type: 'boolean', value: false, description: 'Build the api documentation')
 option('enable-threads', type: 'boolean', value: false, description: 'Build with multi-threading support')
 option('with-libcxx', type: 'boolean', value: false, description: 'Link against llvm\'s standard library libc++ instead of gnu\'s stdlibc++')
+option('enable-sdlog', type: 'boolean', value: true, description: 'Include sdlog in fancy log output to terminal and file')
