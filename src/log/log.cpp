@@ -7,8 +7,8 @@
 
 bool Log::m_sinks_created = false;
 
-auto Log::m_console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
-auto Log::m_file_sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>("skeleton.log", true); // Eric: Fix this with XDG in mind
+std::shared_ptr<spdlog::sinks::stdout_color_sink_mt> Log::m_console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
+std::shared_ptr<spdlog::sinks::basic_file_sink_mt> Log::m_file_sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>("skeleton.log", true); // Eric: Fix this with XDG in mind
 
 auto Log::info(std::string msg) -> void
 {
