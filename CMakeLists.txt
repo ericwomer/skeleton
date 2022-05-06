@@ -14,8 +14,8 @@ project(${ProjectId} VERSION 0.0.1.0)
 enable_language(CXX)
 
 # Options Section.
-option(USE_SPDLOG
-        "Use spdlog for fancy log printing" ON)
+option(USE_SPDLOG "Use spdlog for fancy log printing" ON)
+option(BUILD_DOC "Build documentation" ON)
 
 # Generates the compile_commands.json file, which is used
 # by several outside packages and some IDEs.
@@ -65,6 +65,11 @@ configure_file(
         ${PROJECT_SOURCE_DIR}/src/config.h.in
         ${PROJECT_BINARY_DIR}/config.h
 )
+
+# Build the documentation with doxygen if enabled
+if(BUILD_DOC)
+        add_subdirectory(${PROJECT_SOURCE_DIR}/doc)
+endif(BUILD_DOC)
 
 # Eric: Clean up and generalize this section to be used with MSVC, GCC, and CLang, not just one.
 add_compile_options(-Wall)

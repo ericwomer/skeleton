@@ -10,6 +10,7 @@ dist/share/*
 # Ignore IDE generated files
 .codelite/*
 .idea/*
+.vscode/*
 *.project
 *.workspace
 
