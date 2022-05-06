@@ -15,7 +15,13 @@ enable_language(CXX)
 
 # Options Section.
 option(USE_SPDLOG "Use spdlog for fancy log printing" ON)
-option(BUILD_DOC "Build documentation" ON)
+option(BUILD_DOC "Build documentation" OFF)
+
+# Do not build documentation if the buid type isn't a variant of the Release type
+if(BUILD_DOC AND CMAKE_BUILD_TYPE MATCHES "^[Dd]ebug")
+        message(WARNING "Documentation is to be built only with Release, RelWithDebInfo, or MinSizeRel build types. BUILD_DOC has been manually forced to OFF")
+        set(BUILD_DOC OFF)
+endif()
 
 # Generates the compile_commands.json file, which is used
 # by several outside packages and some IDEs.
