@@ -1,21 +1,21 @@
 cmake_minimum_required(VERSION 3.15)
-set(CMAKE_CXX_COMPILER clang++ CACHE STRING "C++ compiler" FORCE)
 
 # Eric: Functionise this ugly section
 get_filename_component(ProjectId ${CMAKE_CURRENT_LIST_DIR} NAME)
 string(REPLACE " " "_" ProjectId ${ProjectId})
-string(TOLOWER ${ProjectId} ProjectId)
-string(SUBSTRING ${ProjectId} 0 1 FIRST_LETTER)
-string(TOUPPER ${FIRST_LETTER} FIRST_LETTER)
-string(REGEX REPLACE "^.(.*)" "${FIRST_LETTER}\\1" ProjectId "${ProjectId}")
+#string(TOLOWER ${ProjectId} ProjectId)
+#string(SUBSTRING ${ProjectId} 0 1 FIRST_LETTER)
+#string(TOUPPER ${FIRST_LETTER} FIRST_LETTER)
+#string(REGEX REPLACE "^.(.*)" "${FIRST_LETTER}\\1" ProjectId "${ProjectId}")
 
 # Set the project name using the above code.
-project(${ProjectId} VERSION 0.0.1.0)
+project(${ProjectId} VERSION 0.0.1.0) # This is where you set your applications version
 enable_language(CXX)
 
 # Options Section.
 option(USE_SPDLOG "Use spdlog for fancy log printing" ON)
 option(BUILD_DOC "Build documentation" OFF)
+option(FORCE_COLOR_OUTPUT "Force diagnostice color output (GNU/Clang compilers only)" ON)
 
 # Do not build documentation if the buid type isn't a variant of the Release type
 if(BUILD_DOC AND CMAKE_BUILD_TYPE MATCHES "^[Dd]ebug")
@@ -29,14 +29,11 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Make sure the compiler we are using can handle the standard we want to use.
 include(CheckCXXCompilerFlag)
-CHECK_CXX_COMPILER_FLAG("-std=c++17" COMPILER_SUPPORTS_CXX17)
-CHECK_CXX_COMPILER_FLAG("-std=c++1z" COMPILER_SUPPORTS_CXX1Z)
-if(COMPILER_SUPPORTS_CXX17)
-    set(CMAKE_CXX_STANDARD 17)
-elseif(COMPILER_SUPPORTS_CXX1Z)
-    set(CMAKE_CXX_STANDARD 1z)
+CHECK_CXX_COMPILER_FLAG("-std=c++20" COMPILER_SUPPORTS_CXX20)
+if(COMPILER_SUPPORTS_CXX20)
+    set(CMAKE_CXX_STANDARD 20)
 else()
-    message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++17 support. Please use a different C++ compiler.")
+    message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++20 support. Please use a different C++ compiler.")
 endif()
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -49,9 +46,6 @@ endif()
 # Default project include search paths.
 include_directories("${CMAKE_BINARY_DIR}")
 include_directories("${PROJECT_SOURCE_DIR}/src/")
-
-# Eric: Ugly
-include_directories(/usr/lib/llvm-9/include/c++/v1/)
 
 # Building the config.h file.
 set(name ${CMAKE_PROJECT_NAME})
@@ -81,21 +75,26 @@ endif(BUILD_DOC)
 add_compile_options(-Wall)
 add_compile_options(-pipe)
 add_compile_options(-fPIC)
-add_compile_options(-stdlib=libc++)
-add_compile_options (-fcolor-diagnostics)
+
+if(FORCE_COLOR_OUTPUT)
+    if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+        add_compile_options(-fdiagnostics-color=always)
+    elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+        add_compile_options (-fcolor-diagnostics)
+    endif()
+endif()
 
 # Separate sources and header includes for different [modules]
 # in case some need to be removed or added.
 set(${CMAKE_PROJECT_NAME}_SOURCES
-        src/base/base.cpp
-        src/skeleton.cpp
+        src/Implementation/ApplicationImplementation.cpp
         src/main.cpp
         )
 
 set(${CMAKE_PROJECT_NAME}_INCLUDES
-        src/config.h.in
-        src/base/base.h
-        src/skeleton.h
+        src/config.h.in # Eric: Shouldn't this be config.h?
+        src/Interface/ApplicationInterface.h
+        src/Implementation/ApplicationImplementation.h
         )
 
 set(LOG_SOURCES
@@ -127,7 +126,10 @@ add_executable(${${CMAKE_PROJECT_NAME}_BINARY_NAME}
 # Manually added libraries go here. Use a list append later or just
 # add the packages library variable to target_link_libraries function.
 set(${CMAKE_PROJECT_NAME}_Libraries
-        c++ m c gcc_s gcc
+        m
+        c
+        gcc_s
+        gcc
         )
 
 target_link_libraries(${${CMAKE_PROJECT_NAME}_BINARY_NAME}

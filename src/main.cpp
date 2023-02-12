@@ -3,7 +3,7 @@
 #include <vector>
 #include <memory>
 
-#include "skeleton.h"
+#include "Implementation/ApplicationImplementation.h"
 #include "log/log.h"
 
 using std::cerr;
@@ -21,17 +21,17 @@ auto main(int argc, char* argv[]) -> int
   log.log_init("Main");
   log.info("Starting ...");
 
-  // Application class that calls main
-  unique_ptr<Base::Application> application = make_unique<Skeleton>();
+  // ApplicationInterface class that calls main
+  unique_ptr<ew::ApplicationInterface> application = make_unique<ew::ApplicationImplementation>();
 
-  // Convert c style list of strings to a c++ vector of strings
-  vector<string> params;
-  for (int i = 0; i != argc; ++i) {
-    params.emplace_back(argv[i]);  // NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+  try {
+    application->init(argc, argv);
+  } catch (const exception& e) {
+    log.error(e.what());
   }
 
   try {
-    application->main(params);
+    application->main(argc, argv);
   } catch (const exception& e) {
     log.error(e.what());
     return EXIT_FAILURE;

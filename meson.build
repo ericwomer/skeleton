@@ -1,5 +1,5 @@
 project(
-    'Skeletal Application Framework',
+    'Skeletal ApplicationInterface Framework',
     'cpp',
     version : '0.0.0', # This is overridden in the conf_data section
     default_options:
@@ -33,7 +33,7 @@ configure_file(input : 'src/config.h.in',
               configuration : conf_data)
 
 skeleton_src = [
-    'src/skeleton.cpp',
+    'src/',
     'src/base/base.cpp',
     'src/main.cpp',
     ]

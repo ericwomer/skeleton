@@ -1,9 +1,12 @@
 
 /**
  * @brief Eventually turn this in to a valid progress indicator.
+ * currently does not work or isn't properly integratable?
  *
  */
-/*
+
+#include <iostream>
+
 class pBar {
 public:
   void update(double newProgress) {
@@ -38,4 +41,4 @@ private:
       currUpdateVal = 0;      // Do not change
   double currentProgress = 0, // Do not change
       neededProgress = 100;   // I would recommend NOT changing this
-}; */
+};

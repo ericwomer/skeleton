@@ -18,11 +18,12 @@ public:
   auto warn(std::string msg) -> void;
   auto error(std::string msg) -> void;
   auto log_init(std::string name) -> void;
+
 private:
   std::shared_ptr<spdlog::logger> m_logger;
 
   static std::shared_ptr<spdlog::sinks::stdout_color_sink_mt> m_console_sink;
-  static std::shared_ptr<spdlog::sinks::basic_file_sink_mt> m_file_sink;
+  static std::shared_ptr<spdlog::sinks::basic_file_sink_mt>   m_file_sink;
 
   static bool m_sinks_created;
 };
