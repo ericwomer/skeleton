@@ -16,7 +16,7 @@ enable_language(CXX)
 option(USE_SPDLOG "Use spdlog for fancy log printing" ON)
 option(BUILD_DOC "Build documentation" OFF)
 option(FORCE_COLOR_OUTPUT "Force diagnostice color output (GNU/Clang compilers only)" ON)
-option(USE_MOLD "Use mold linker instead of system default" ON)
+option(USE_MOLD "Use mold linker instead of system default" OFF)
 
 # Do not build documentation if the buid type isn't a variant of the Release type
 if(BUILD_DOC AND CMAKE_BUILD_TYPE MATCHES "^[Dd]ebug")
