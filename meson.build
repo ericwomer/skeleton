@@ -40,7 +40,7 @@ skeleton_include_directories = [
     include_directories('include/'),
 ]
 
-skeleton_cxxflags = []
+skeleton_cxxflags = [ '-Wall', '-Wextra', '-Werror', '-O3']
 skeleton_ldflags = []
 math = cpp.find_library('m', required: false)
 
@@ -55,7 +55,7 @@ if cpp_family == 'gcc'
     skeleton_cxxflags += ['-fdiagnostics-color=always']
     skeleton_include_directories += [include_directories('/usr/include/')]
 elif cpp_family == 'clang'
-    skeleton_cxxflags += ['-fcolor-diagnostics']
+    skeleton_cxxflags += ['-fcolor-diagnostics', '-stdlib=libc++', '-Wnon-gcc']
 
     skeleton_include_directories += [
         include_directories('/usr/include/c++/v1/'),
@@ -65,8 +65,6 @@ elif cpp_family == 'clang'
         '-lc++',
         '-lc++abi',
     ]
-
-    skeleton_cxxflags += ['-stdlib=libc++']
 
 else
     # Do something else for MSVC?
