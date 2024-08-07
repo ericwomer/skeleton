@@ -6,13 +6,20 @@ option(
 )
 option(
     'enable-threads',
-    type: 'boolean',
-    value: false,
+    type: 'feature',
+    value: 'disabled',
     description: 'Build with multi-threading support',
 )
 option(
     'enable-spdlog',
-    type: 'boolean',
-    value: true,
+    type: 'feature',
+    value: 'enabled',
     description: 'Include spdlog in fancy log output to terminal and file',
 )
+option(
+  'use-mold',
+  type: 'feature',
+  value: 'disabled',
+  description: 'Use mold as the linker',
+)
+  

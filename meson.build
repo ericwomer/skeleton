@@ -30,6 +30,16 @@ configure_file(
     configuration: conf_data,
 )
 
+prefix = get_option('prefix')
+bindir = prefix / get_option('bindir')
+localedir = prefix / get_option('localedir')
+
+datadir = prefix / get_option('datadir')
+pkgdatadir = datadir / meson.project_name()
+iconsdir = datadir / 'icons'
+podir = meson.project_source_root() / 'po'
+gettext_package = meson.project_name()
+
 skeleton_src = [
     'src/Implementation/ApplicationImplementation.cpp',
     'src/main.cpp',
@@ -45,6 +55,15 @@ skeleton_ldflags = []
 math = cpp.find_library('m', required: false)
 
 skeleton_deps = [math]
+
+if get_option('use-mold').enabled()
+    have_mold = find_program('mold', required : false)
+    assert(have_mold.found(), 'Please install mold or set it to use the default linker')
+    message('Linking with mold')
+    skeleton_ldflags += ['-fuse-ld=mold']
+else
+    message('Using default linker')
+endif
 
 # Hard off for now
 #if get_option('enable-threads')
@@ -73,7 +92,7 @@ endif
 # Hard on for now until new system is put in place to
 # choose between either spdlog or simple log that just
 # prints to stream
-if get_option('enable-spdlog')
+if get_option('enable-spdlog').enabled()
     skeleton_include_directories += [
         include_directories('thirdparty/spdlog/include'),
     ]
