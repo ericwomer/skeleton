@@ -14,8 +14,10 @@ using std::string;
 using std::unique_ptr;
 using std::vector;
 
-auto main(int argc, char* argv[]) -> int
+auto main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) -> int
 {
+
+
   // Eric: Use Log log for main until I find something better/different.
   Log log;
   log.log_init("Main");

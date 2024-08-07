@@ -11,7 +11,7 @@ using std::vector;
 
 namespace ew {
 
-auto ApplicationImplementation::main(int argc, char** argv) -> int
+auto ApplicationImplementation::main([[maybe_unused]] int argc, [[maybe_unused]] char** argv) -> int
 {
   vector<string> processed = process_flags();
 
