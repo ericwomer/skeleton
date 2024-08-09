@@ -56,13 +56,11 @@ math = cpp.find_library('m', required: false)
 
 skeleton_deps = [math]
 
-if get_option('use-mold').enabled()
-    have_mold = find_program('mold', required : false)
-    assert(have_mold.found(), 'Please install mold or set it to use the default linker')
+if get_option('use-mold') and find_program('mold', required : false).found()
     message('Linking with mold')
     skeleton_ldflags += ['-fuse-ld=mold']
 else
-    message('Using default linker')
+    message('Using the default selected linker')
 endif
 
 # Hard off for now

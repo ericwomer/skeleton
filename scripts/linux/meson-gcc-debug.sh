@@ -1,6 +1,6 @@
 #!/bin/bash
 
 cd ../../
-rm -rf _buildGccDebug
+rm -rf _buildMesonGccDebug
 
-meson setup -Dbuildtype=debug -Duse-mold=enabled --native-file profiles/gcc-linux.ini -Dprefix=/usr/local/ _buildGccDebug
+meson setup -Dbuildtype=debug -Duse-mold=true --native-file profiles/gcc-linux.ini -Dprefix=/usr/local/ _buildMesonGccDebug

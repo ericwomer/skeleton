@@ -18,8 +18,8 @@ option(
 )
 option(
   'use-mold',
-  type: 'feature',
-  value: 'disabled',
-  description: 'Use mold as the linker',
+  type: 'boolean',
+  value: false,
+  description: 'Use mold linker',
 )
   
