@@ -161,6 +161,7 @@ builddir/
 Build/
 BuildDir/
 
+_build**/
 # Exclude clangd generated folders/files
 .cache/*
 
