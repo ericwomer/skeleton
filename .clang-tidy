@@ -13,7 +13,6 @@ ImplementationFileExtensions:
   - cpp
   - cxx
 HeaderFilterRegex: ''
-AnalyzeTemporaryDtors: false
 FormatStyle:     file
 User:            eric
 CheckOptions:
@@ -66,7 +65,6 @@ CheckOptions:
   google-readability-namespace-comments.SpacesBeforeComments: '2'
   cppcoreguidelines-explicit-virtual-functions.IgnoreTemplateInstantiations: 'false'
   cppcoreguidelines-pro-bounds-constant-array-index.IncludeStyle: llvm
-  cppcoreguidelines-prefer-member-initializer.UseAssignment: 'false'
   cppcoreguidelines-narrowing-conversions.WarnOnIntegerNarrowingConversion: 'true'
   cppcoreguidelines-explicit-virtual-functions.IgnoreDestructors: 'false'
   llvm-else-after-return.WarnOnConditionVariables: 'false'
@@ -74,5 +72,6 @@ CheckOptions:
   cppcoreguidelines-avoid-magic-numbers.IgnorePowersOf2IntegerValues: 'false'
   cppcoreguidelines-macro-usage.CheckCapsOnly: 'false'
 SystemHeaders:   false
+UseColor: true
 ...
 
