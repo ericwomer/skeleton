@@ -3,6 +3,11 @@
 #include <vector>
 #include <memory>
 
+#include <string>
+#include <exception>
+
+#include <cstdlib>
+
 #include "Implementation/ApplicationImplementation.h"
 #include "log/log.h"
 
@@ -14,10 +19,8 @@ using std::string;
 using std::unique_ptr;
 using std::vector;
 
-auto main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) -> int
+auto main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) -> int
 {
-
-
   // Eric: Use Log log for main until I find something better/different.
   Log log;
   log.log_init("Main");
@@ -28,13 +31,13 @@ auto main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) -> int
 
   try {
     application->init(argc, argv);
-  } catch (const exception& e) {
+  } catch(const exception &e) {
     log.error(e.what());
   }
 
   try {
     application->main(argc, argv);
-  } catch (const exception& e) {
+  } catch(const exception &e) {
     log.error(e.what());
     return EXIT_FAILURE;
   }
