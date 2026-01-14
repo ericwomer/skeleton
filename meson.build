@@ -2,8 +2,8 @@ project(
     'Skeletal ApplicationInterface Framework',
     'cpp',
     version: '0.0.0', # This is overridden in the conf_data section
-    default_options: ['cpp_std=c++20', 'warning_level=1'],
-    meson_version: '>=1.2.1',
+    default_options: ['cpp_std=c++26', 'warning_level=1'],
+    meson_version: '>=1.10.0',
 )
 
 executable_name = 'skeleton'
@@ -56,13 +56,6 @@ math = cpp.find_library('m', required: false)
 
 skeleton_deps = [math]
 
-if get_option('use-mold') and find_program('mold', required : false).found()
-    message('Linking with mold')
-    skeleton_ldflags += ['-fuse-ld=mold']
-else
-    message('Using the default selected linker')
-endif
-
 # Hard off for now
 #if get_option('enable-threads')
 #    skeleton_deps += dependency('threads') #This enables what ever on Windows and pthreads on Linux/Mac/Unix
@@ -72,15 +65,21 @@ if cpp_family == 'gcc'
     skeleton_cxxflags += ['-fdiagnostics-color=always']
     skeleton_include_directories += [include_directories('/usr/include/')]
 elif cpp_family == 'clang'
-    skeleton_cxxflags += ['-fcolor-diagnostics', '-stdlib=libc++', '-Wnon-gcc']
+    skeleton_cxxflags += ['-stdlib=libc++', '-Wnon-gcc', '-fcolor-diagnostics' ]
 
     skeleton_include_directories += [
         include_directories('/usr/include/c++/v1/'),
     ]
 
     skeleton_ldflags += [
+      '-stdlib=libc++',
+      '-L/opt/llvm/lib',
+      '-Wl,--rpath=/opt/llvm/lib',
+      '--rtlib=compiler-rt',
+      '--unwindlib=libunwind',
         '-lc++',
         '-lc++abi',
+        '-lunwind'
     ]
 
 else
