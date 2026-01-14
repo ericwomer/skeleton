@@ -16,10 +16,3 @@ option(
     value: 'enabled',
     description: 'Include spdlog in fancy log output to terminal and file',
 )
-option(
-  'use-mold',
-  type: 'boolean',
-  value: false,
-  description: 'Use mold linker',
-)
-  
