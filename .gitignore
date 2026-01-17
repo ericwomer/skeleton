@@ -161,6 +161,9 @@ builddir/
 Build/
 BuildDir/
 
+# Exclude user created conan folder
+conan/
+
 # Exclude clangd generated folders/files
 .cache/*
 

@@ -1,0 +1,13 @@
+[requires]
+spdlog/1.17.0
+nlohmann_json/3.12.0
+
+[tool_requires]
+meson/[>=1.10.0]
+
+[test_requires]
+catch2/3.12.0
+
+[generators]
+PkgConfigDeps
+MesonToolchain

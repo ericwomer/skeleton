@@ -8,6 +8,7 @@ project(
 
 executable_name = 'skeleton'
 pkgconfig = import('pkgconfig')
+
 cpp = meson.get_compiler('cpp')
 cpp_family = cpp.get_id()
 
@@ -90,12 +91,12 @@ endif
 # choose between either spdlog or simple log that just
 # prints to stream
 if get_option('enable-spdlog').enabled()
-    skeleton_include_directories += [
-        include_directories('thirdparty/spdlog/include'),
-    ]
+    # skeleton_include_directories += [
+    #     include_directories('thirdparty/spdlog/include'),
+    # ]
+    skeleton_deps += [dependency('spdlog')]
 
     skeleton_cxxflags += ['-DUSE_SPDLOG']
-
     skeleton_src += ['src/log/log.cpp']
 endif
 
